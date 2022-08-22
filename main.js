@@ -1,16 +1,19 @@
 state = {
     planets: [],
-    shadow: false
+    shadow: true
 }
 
-const G = 0.5
+const G = 0.7
 
 const drawBg = () => {
     background(120);
 }
 
 function setup() {
-    createCanvas(500, 500);
+    let sideLength = window.innerWidth < window.innerHeight ? window.innerWidth : window.innerHeight
+    sideLength -= 50
+    const canvas = createCanvas(sideLength, sideLength);
+    canvas.parent("p5Canvas")
 
     angleMode(DEGREES)
 
@@ -65,7 +68,7 @@ function draw() {
         const p = state.planets[i]
         fill(244, 180, 26)
         stroke(244, 180, 26)
-        ellipse(p.pos.x, p.pos.y, p.m, p.m)
+        ellipse(p.pos.x, p.pos.y, p.m * 5, p.m * 5)
     }
 
     handleCollisions()
